@@ -1,0 +1,9 @@
+---
+title: "Population & Community Ecology Homework 1"
+output: 
+  pdf_document: default
+---
+
+#Problem 1
+
+#Problem 2
