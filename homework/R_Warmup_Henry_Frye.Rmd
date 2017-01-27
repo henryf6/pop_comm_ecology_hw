@@ -1,0 +1,212 @@
+---
+title: "R Warmup"
+output: pdf_document
+author: Henry Frye
+---
+
+#Objects and Arithmetic
+
+##Exercise 1
+
+###Part a
+This will result in the length of vector x
+```{r}
+x<-c(4,2,6)
+y<-c(1,0,-1)
+length(x)
+
+```
+
+###Part b
+This will result in the sum of vector x.
+```{r}
+sum(x)
+```
+
+###Part c
+This will result in the sum of the square for each value within vector x.
+```{r}
+sum(x^2)
+```
+
+###Part d
+This will result in the sum of each value between vectors x and y based on position within the vectors
+```{r}
+x+y
+```
+
+###Part e
+This will result in the product of each value between vectors x and y based on position within the vectors
+```{r}
+x*y
+```
+
+###Part f
+This will subtract 2 from each value in vector x.
+```{r}
+x-2
+```
+
+###Part g
+This will square each value in vector x.
+```{r}
+x^2
+```
+
+##Exercise 2
+###Part a
+This will give a sequence of whole integers [7,11].
+```{r}
+7:11
+```
+###Part b
+This will give a sequence of whole integers [2,9].
+```{r}
+seq(2,9)
+```
+###Part c
+This will give a sequence of integers counting by 2 from 4 to 10.
+```{r}
+seq(4,10,by=2)
+```
+###Part d
+This will give a sequence of integers between and 3 and 30 divided into 10 parts.
+```{r}
+seq(3,30,length=10)
+```
+###Part e
+This will give a descending sequence from 6 to -4 counting from 2's.
+```{r}
+seq(6,-4,by=-2)
+```
+
+***
+#Summaries and Subscripting
+##Exercise 1
+###Part a
+This will return the second value of vector x.
+```{r}
+x<- c(5,9,2,3,4,6,7,0,8,12,2,9)
+x[2]
+```
+###Part b
+This will return the second through fourth values of vector x
+```{r}
+x[2:4]
+```
+###Part c
+This will return the second, the third, and the sixth value of vector x.
+```{r}
+x[c(2,3,6)]
+```
+
+***
+#Matrices
+##Exercise 1
+###Setup
+```{r}
+x <- matrix(c(3,2,-1,1), nrow = 2)
+print(x)
+
+y<- matrix(c(1,4,0,0,1,-1), nrow = 2)
+print(y)
+
+```
+
+###Part a
+This will multiply each value in matrix **x** by 2. 
+```{r}
+2*x
+```
+
+###Part b
+This will result in the square of **x**. 
+```{r}
+x*x
+```
+
+
+###Part e
+This will trnanspose matrix **y**.
+```{r}
+t(y)
+```
+
+##Exercise 2
+###Part a
+
+```{r}
+x[1,]
+```
+
+Part b
+```{r}
+x[2,]
+```
+
+Part c
+```{r}
+x[,2]
+```
+
+Part d
+```{r}
+y[1,2]
+```
+
+Part e
+```{r}
+y[,2:3]
+```
+
+***
+#Statistical Computation and Simulation
+##Exercise 1
+Part a
+```{r}
+dnorm(x = .5, mean = 2, sd = .25)
+```
+
+Part b
+```{r}
+pnorm(2.5, mean = 2, sd = .25)
+```
+
+Part c
+```{r}
+qnorm(.95, mean =2, sd = .25)
+```
+
+Part d
+```{r}
+pnorm(3, mean = 2, sd = .25) - pnorm(1, mean = 2, sd = .25)
+```
+
+
+##Exercise 3
+```{r}
+pois.sim <- rpois(n = 100, lambda = 5)
+summary(pois.sim)
+```
+
+
+# Graphics
+##Exercise 1
+```{r}
+gam.sim <- rgamma(n = 100, shape = .5)
+
+par(mfrow = c(1,2))
+hist(gam.sim, xlab = 'Simulated Gamma Values', col = 'orange',
+     main = 'Gamma Histogram')
+boxplot(gam.sim, notch = TRUE, col = 'cadetblue', main = 'Gamma Boxplot', main.cex = .5)
+
+```
+
+
+##Exercise 3
+
+```{r}
+data(nhtemp)
+plot(nhtemp)
+```
+
