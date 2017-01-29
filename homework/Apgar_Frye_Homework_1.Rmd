@@ -27,7 +27,13 @@ Thus after a total of 47 days, the population density will be 64.680 duckweed pl
 
 #Problem 2
 
+In this problem we want to find the time at which both Ethipia and Mexico will have the same population size, while starting at different population sizes and growing at different rates. We will determine this time by setting the exponential growth formula, $N_t = N_0 e^{rt}$ for each population equal to eachother and solving for t (time). The initial population, $N_0$, for Mexico is 121,005,000 and r is 1.2% and the initial population for Ethiopia, $N_0$, is 90,076,000 and r is 2.9%. 
 
+```{r}
+121005000exp
+```
+
+In 0.1736 years the populations of Mexico and Ethiopia will be equal. 
 
 ***
 
