@@ -7,21 +7,21 @@ output:
 
 #Problem 1
 
-In this problem we look to find the density of duckweed plants per $m^2$ after 47 days. We will estimate the future population using the exponential growth formula, $N_t = N_0 e^{rt}$ where the initial population, $N_0$, is 11.1 duckweed plants per $m^2$.  We can calculate the rate of unitless population change, r, by dividing the estimate after 20 day from the initial population.
+In this problem we look to find the density of duckweed plants per $m^2$ after 47 days. We will estimate the future population using the exponential growth formula, $N_t = N_0 e^{rt}$ where the initial population, $N_0$, is 11.1 duckweed plants per $m^2$.  We can calculate the rate of unitless population change, r, by using the above equation.
 
 ```{r}
-r = 23.5/11.1
+r <- (log(23.5/11.1))/20
 r
 ```
 
-Thus with r= 2.12, we can calculate $N_{27}$ as $N_{27} = 11.1 e^{2.12\times47}$.
+Thus with r= 0.03750, we can calculate $N_{47}$ by using the equation $N_t = N_0 e^{rt}$ again.
 
 ```{r}
-n27 <- 11.1*exp(2.12*47)
-n27
+N47 <- 11.1*(exp(0.0375*47))
+N47
 ```
 
-Thus after a total of 47 days, the population density will be $2.08\times10^{44}$ duckweed plants per $m^2$.
+Thus after a total of 47 days, the population density will be 64.680 duckweed plants per $m^2$.
 
 ***
 
