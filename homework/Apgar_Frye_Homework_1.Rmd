@@ -53,11 +53,14 @@ r
 ```
 
 Thus r is equal to .036 in the exponential model to  achieve the same results as the discrete population growth model.
+
 ***
 
 #Problem 4
 
 ***
+
+
 
 #Problem 5
 
@@ -70,7 +73,7 @@ lx <- sx/740
 print(lx)
 ```
 
-***I assume that g(x) was meant to be p(x)***
+**I assume that g(x) was meant to be p(x)**
 
 Solving for p(x)
 
@@ -81,3 +84,37 @@ Solving for p(x)
 
 
 ***
+
+#Problem 7
+
+The following is the setup for the population project matrix:
+```{r}
+stages <- c('seedling','juvenile','small adult', 'medium adult', 'large adult')
+A <-  matrix(c(
+     0,  0,.015,.063,.189,
+  .294,.25, 0  , 0  , 0  ,
+  .176,.35,.385,.059,.012,
+  0   ,.35,.461,.568,.171,
+  0   , 0 ,.108,.356,.805
+), nrow = 5, byrow = TRUE,
+   dimnames = list(stages,stages)
+)
+print(A)
+
+
+```
+
+##Part a
+To calculate $\lambda$ from the popbio package we do the following:
+```{r}
+library(popbio)
+lambda(A)
+```
+Thus $\lambda = 1.04$.
+
+##Part b
+To calculate the stable stage distribution we do the following:
+```{r}
+stable.stage(A)
+```
+
