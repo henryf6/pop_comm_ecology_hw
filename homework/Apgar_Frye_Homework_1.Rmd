@@ -184,5 +184,62 @@ Now the stable age distribution has now increased in all classes but large adult
 
 #Problem 8
 
+```{r, echo = FALSE}
+
+StochasticSim <- function(steps,b,d,N0){
+  N <- numeric(steps + 1);
+  t <- numeric(steps + 1);
+  N[1] <- N0;
+  t[1] <- 0;
+  for(i in 1:steps){
+    if (N[i]>0) {
+      eventTime <- rexp(1,(b+d)*N[i])
+      t[i+1] <- t[i] + eventTime 
+    if (runif(1) < (b/(b+d))) {
+      N[i+1] <- N[i] + 1
+  } else {
+    N[i+1] <- N[i] - 1
+    }
+  }
+  else {
+      N[i+1] <- 0
+      t[i+1] <- t[i]
+    }
+}
+#plot(N~t,type='l')
+return(N[steps+1])
+}
+```
+
+Running the stochastic simulation 50 times with 50 steps, $N_0=10$, b=.55 and d=.5 yields the following vector.
+```{r}
+sim10runs <- vector(mode = 'numeric',length = 50)
+
+for(i in 1:50){
+    sim10runs[i] <- StochasticSim(steps = 50,b=.55,d=.5, N0=10)
+} 
+
+
+propextinction10 <- length(which(sim10runs == 0))/length(sim10runs)
+paste('Extinction rate is:',propextinction10)
+sim10runs
+```
+
+Running the same stochastic simulation, but with $N_0=50$ yields
+
+```{r}
+sim50runs <- vector(mode = 'numeric',length = 50)
+
+for(i in 1:50){
+    sim50runs[i] <- StochasticSim(steps = 50,b=.55,d=.5, N0=50)
+} 
+
+
+propextinction50 <- length(which(sim50runs == 0))/length(sim50runs)
+paste('Extinction rate is:',propextinction50)
+sim50runs
+```
+
+
 
 #Problem 9
