@@ -71,18 +71,42 @@ Thus r is equal to .036 in the exponential model to  achieve the same results as
 
 #Problem 5
 
-Survivorship, as defined by $\frac{S_x}{S_0}$, is calculated in the vector below.
+$l_x$ and $p_x$ are solved below and placed into the following life history table:
 ```{r}
+library(knitr)
 age <- 0:4
 sx <- c(740,280,105,32,0)
-bx <- c(0,0.4,1.3,3,8,NA)
+bx <- c(0,0.4,1.3,3.8,NA)
 lx <- sx/740
-print(lx)
+
+px <- vector(mode = 'numeric',length = 5)
+for(i in 1:length(lx)){
+  px[i] <- (lx[i+1]/lx[i])
+}
+
+lifetable <- cbind(age,sx,lx,px,bx)
+colnames(lifetable) <- c('Age','S_x','l_x','p_x','b_x')
+lifetable <- as.data.frame(lifetable)
+kable(lifetable)
+
+
 ```
 
-**I assume that g(x) was meant to be p(x)**
+We solve for $R_0$ in the following:
+```{r}
+r0 <- sum(lifetable$l_x*lifetable$b_x, na.rm= TRUE)
+r0
+```
 
-Solving for p(x)
+Thus $R_0= .5$
+
+We solve for G as
+```{r}
+(with(lifetable, sum(age*l_x*b_x, na.rm = TRUE))/r0)
+
+```
+
+Thus we find the generation time, G, to be about 2.03.
 
 
 ***
