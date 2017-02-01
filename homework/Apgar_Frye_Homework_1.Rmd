@@ -66,8 +66,48 @@ Thus r is equal to .036 in the exponential model to  achieve the same results as
 #Problem 4
 
 ***
+In this problem, we are given values for the number of collared doves monitored in Great Britain each year. We are asked to estimate r by plotting the natural log of the number of doves by the time in years. 
 
+```{r}
+Time <- c(1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964)
+Time 
+NumDoves <- c(4, 16, 45, 100, 205, 675, 1900, 4650, 10200, 18885)
+NumDoves
+LnNumDoves <- log(NumDoves)
+LnNumDoves
 
+lm(LnNumDoves~Time)
+
+```
+r = 0.9367
+
+In the second part of this question, we are asked to plot ln(N) versus t:
+```{r}
+plot(Time, LnNumDoves)
+```
+
+We are also asked to calculate what the population sizes would be each year, assuming exponential growth, given that the initial population size in 1955 is 4 doves.
+
+```{r}
+TimeSinceStart <- c(1,2,3,4,5,6,7,8,9)
+TimeSinceStart
+ExponEqu <- 4*exp(0.9367*TimeSinceStart)
+ExponEqu
+for(val in Time)
+print(val)
+```
+
+The population sizes would be as follows:
+1955: 4 doves
+1956: 10.20619 doves
+1957: 26.04158 doves
+1958: 66.44632 doves
+1959: 169.54083 doves
+1960: 432.59171 doves
+1961: 1103.77827 doves
+1962: 2816.34257 doves
+1963: 7186.03157 doves
+1964: 18335.50020 doves
 
 #Problem 5
 
@@ -112,6 +152,8 @@ Thus we find the generation time, G, to be about 2.03.
 ***
 
 #Problem 6
+
+In this problem we are asked to 
 
 
 ***
