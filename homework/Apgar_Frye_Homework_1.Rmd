@@ -153,7 +153,39 @@ Thus we find the generation time, G, to be about 2.03.
 
 #Problem 6
 
-In this problem we are asked to 
+In this problem we are asked to use the life table from problem 5 to create a leslie matrix and project the number in each age class for the next two years. First, we provide the completed life table below:
+
+```{r}
+library(knitr)
+age <- 0:4
+sx <- c(740,280,105,32,0)
+bx <- c(0,0.4,1.3,3.8,NA)
+lx <- sx/740
+lxbx <- lx*bx
+agelxbx <- age*lx*bx
+
+px <- vector(mode = 'numeric',length = 5)
+for(i in 1:length(lx)){
+  px[i] <- (lx[i+1]/lx[i])
+}
+
+pxbx1
+
+lifetable2 <- cbind(age,sx,lx,px,bx,lxbx,agelxbx,pxbx1)
+colnames(lifetable2) <- c('Age','S_x','l_x','p_x','b_x', 'lx_bx', 'x_lx_bx', 'px_bx+1')
+lifetable2 <- as.data.frame(lifetable2)
+kable(lifetable2)
+
+```
+
+Next, we will rename each pxbx+1 value to be mo, m1, m2, or m3, and construct the leslie matrix. Then we will multiply the leslie matrix by the projection matrix two times to receive the project number of individuals at each age class over the next two years. 
+
+```{r}
+m <- c(1.00, 1.15, 1.40, 1.00)
+mo
+
+
+```
 
 
 ***
@@ -309,3 +341,17 @@ sim50runs
 
 
 #Problem 9
+
+In problem number 9 we are asked to calculate the average weight of trees in Plot B and the total weight of plants in both Plots A and B. We are given the following values: Plot A: 16 seedlings/$m^2$, 1 tree = 24kg, 1 tree/$m^2$, Plot B: 4 seedlings/$m^2$ and 0.5 trees/$m^2$. We will use the equation w = $cN^k$ to first calculate c using the values from Plot A and then use the value of c to calculate the value of w in Plot B. 
+
+```{r}
+c <- 24/1^(-3/2)
+c
+
+w <- 24*(0.5^(-3/2))
+w
+```
+
+The average tree in Plot B weighs 67.88225 kg 
+
+The total weight of plants in each plot is 24 kg. 
