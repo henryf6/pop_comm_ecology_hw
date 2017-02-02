@@ -29,17 +29,36 @@ Thus after a total of 47 days, the population density will be 64.680 duckweed pl
 
 In this problem we want to find the time at which both Ethipia and Mexico will have the same population size, while starting at different population sizes and growing at different rates. We will determine this time by setting the exponential growth formula, $N_t = N_0 e^{rt}$ for each population equal to eachother and solving for t (time). The initial population, $N_0$, for Mexico is 121,005,000 and r is 1.2% and the initial population for Ethiopia, $N_0$, is 90,076,000 and r is 2.9%. 
 
-```{r}
-#SO. basically this problem has the same variable on both sides of the equation and I'm not sure how to turn that into a single line of code. If you can do that I may think you're a genius.
+$$
+N_{2015,E} e^{r_Et} =N_{2015,M} e^{r_Mt}
+$$
 
-12100500*exp(1.2*t)=90076000*exp(2.9t)
-log(exp(1.2t))=log(0.74440*exp(2.9t))
-1.2t= -.29518 + 2.9t
-t <- -0.29518/-1.7
-t
+$$
+ln(N_{2015,E}) + r_Et = ln(N_{2015,M}) + r_Mt
+$$
+$$
+ln(\frac{N_{2015,E}}{N_{2015,M}}) = r_Mt - r_Et 
+$$
+
+Thus,
+
+$$
+t = \frac{ln(\frac{N_{2015,E}}{N_{2015,M}})}{r_M-r_E}
+$$
+
+
+
+
+```{r}
+t = log(90076000/121005000)/(.012-.029)
+
 ```
 
-In 0.1736 years the populations of Mexico and Ethiopia will be equal. 
+
+
+In 17.36 years the populations of Mexico and Ethiopia will be equal. 
+
+
 
 ***
 
@@ -75,34 +94,41 @@ In this problem, we are given values for the number of collared doves monitored 
 
 ```{r}
 Time <- c(1955, 1956, 1957, 1958, 1959, 1960, 1961, 1962, 1963, 1964)
-Time 
 NumDoves <- c(4, 16, 45, 100, 205, 675, 1900, 4650, 10200, 18885)
-NumDoves
 LnNumDoves <- log(NumDoves)
-LnNumDoves
 
 lm(LnNumDoves~Time)
-
 ```
 r = 0.9367
 
 In the second part of this question, we are asked to plot ln(N) versus t:
 ```{r}
-plot(Time, LnNumDoves)
+plot(Time, LnNumDoves, bty = 'n', xlab = 'Year', ylab = 'Number of Doves', main = 'ln(N) vs. t', pch = 17)
+
+
 ```
 
 We are also asked to calculate what the population sizes would be each year, assuming exponential growth, given that the initial population size in 1955 is 4 doves.
 
 ```{r}
-TimeSinceStart <- c(1,2,3,4,5,6,7,8,9)
+TimeSinceStart <- 0:9
 TimeSinceStart
 ExponEqu <- 4*exp(0.9367*TimeSinceStart)
-ExponEqu
-for(val in Time)
-print(val)
+val <- vector(mode = 'double', length = 10)
+for(i in 1:length(TimeSinceStart)){
+ val[i] <- 4*exp(0.9367*TimeSinceStart[i])
+}
+val <- round(val) 
+
+newpoptable <- cbind(Time,val)
+colnames(newpoptable) <- c('Year','Population number')
+
+library(knitr)
+kable(newpoptable)
+
 ```
 
-The population sizes would be as follows:
+The unrounded population sizes would be as follows:
 1955: 4 doves
 1956: 10.20619 doves
 1957: 26.04158 doves
@@ -161,50 +187,54 @@ Thus we find the generation time, G, to be about 2.03.
 In this problem we are asked to use the life table from problem 5 to create a leslie matrix and project the number in each age class for the next two years. First, we provide the completed life table below:
 
 ```{r}
-library(knitr)
-age <- 0:4
-sx <- c(740,280,105,32,0)
-bx <- c(0,0.4,1.3,3.8,NA)
-lx <- sx/740
-lxbx <- lx*bx
-agelxbx <- age*lx*bx
-
-px <- vector(mode = 'numeric',length = 5)
-for(i in 1:length(lx)){
-  px[i] <- (lx[i+1]/lx[i])
+lxbx <- lifetable$l_x*lifetable$b_x
+xlxbx <- lifetable$Age*lifetable$l_x*lifetable$b_x
+pxbx_1 <- vector(length =5, mode= 'double')
+for(i in 1:5){
+  pxbx_1[i] <- lifetable$p_x[i]*lifetable$b_x[i+1]
 }
 
-pxbx1 <- vector(mode = 'numeric',length = 5)
-for(i in 1:length(px)){
-  pxbx1[i] <- (px*bx[i+1])
-}
+lifetable_6 <- cbind(lifetable, lxbx, xlxbx, pxbx_1)
 
-pxbx1
-
-lifetable2 <- cbind(age,sx,lx,px,bx,lxbx,agelxbx,pxbx1)
-colnames(lifetable2) <- c('Age','S_x','l_x','p_x','b_x', 'lx_bx', 'x_lx_bx', 'px_bx+1')
-lifetable2 <- as.data.frame(lifetable2)
-kable(lifetable2)
+colnames(lifetable_6) <- c('Age','S_x','l_x','p_x','b_x', 'l_x*b_x', 'x*l_x*b_x', 'p_x*b_x+1')
+lifetable_6 <- as.data.frame(lifetable_6)
+kable(lifetable_6)
 
 ```
 
 Next, we will construct the leslie matrix using $m_0$, $m_1$, $m_2$, $m_3$, $p_0$, $p_1$, and $p_2$. Then we will multiply the leslie matrix by the projection matrix two separate times to receive the projected number of individuals at each age class over the next two years. 
 
-```{r}
+```{r, eval = TRUE}
+library(knitr)
 leslie <- matrix(c(0.15136, 0.4875, 1.15824, 0, 0.3784, 0, 0, 0, 0, 0.3750, 0, 0, 0, 0, 0.3048, 0), nrow = 4, byrow = T)
-leslie
 leslie <- as.data.frame(leslie)
 kable(leslie)
-leslie
-
-projection1 <- matrix(c(70, 40, 20, 10), nrow = 4, byrow = T)
-projection1
-
-# HELP ME MULTIPLY MATRICES IN R UGH- basically the leslie matrix needs to be multiplied by the projection1 matrix and then those results should be the projection2 matrix that is again multiplied by the leslie matrix
-
-projection1output <- leslie %*% projection1
 
 ```
+
+
+Thus, the population age distribution at year 0 is:
+```{r}
+projection1 <- matrix(c(70, 40, 20, 10), nrow = 4, byrow = T)
+projection1
+```
+
+Projection of population age distribution for year 1:
+```{r}
+leslie <- as.matrix(leslie)
+projection1output <- leslie %*% projection1
+print(projection1output)
+```
+
+
+Projection of population age distribution for year 2:
+```{r}
+leslie <- as.matrix(leslie)
+projection1output <- leslie %*% projection1
+projection2output <- leslie %*% projection1output
+print(projection2output)
+```
+
 
 
 ***
@@ -301,7 +331,7 @@ Now the stable age distribution has now increased in all classes but large adult
 
 #Problem 8
 
-```{r, echo = FALSE}
+```{r}
 
 StochasticSim <- function(steps,b,d,N0){
   N <- numeric(steps + 1);
@@ -364,13 +394,13 @@ sim50runs
 In problem number 9 we are asked to calculate the average weight of trees in Plot B and the total weight of plants in both Plots A and B. We are given the following values: Plot A: 16 seedlings/$m^2$, 1 tree = 24kg, 1 tree/$m^2$, Plot B: 4 seedlings/$m^2$ and 0.5 trees/$m^2$. We will use the equation w = $cN^k$ to first calculate c using the values from Plot A and then use the value of c to calculate the value of w in Plot B. 
 
 ```{r}
-c <- 24/1^(-3/2)
+c <- 24/(1^(-3/2))
 c
 
 w <- 24*(0.5^(-3/2))
 w
 ```
 
-The average tree in Plot B weighs 67.88225 kg 
+The average tree in Plot B weighs 67.88225 kg per $m^2$
 
-The total weight of plants in each plot is 24 kg. 
+The total weight of plants in each plot is 24 kg per $m^2$ 
