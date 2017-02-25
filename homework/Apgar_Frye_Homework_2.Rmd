@@ -1,0 +1,21 @@
+---
+title: "Population and Community Ecology Homework 2"
+author: Samantha Apgar & Henry Frye
+output: pdf_document
+
+---
+
+# Part 1
+
+##Tutorial Run-Through
+
+```{r}
+library(spatstat)
+library(dplyr)
+data(japanesepines)
+summary(japanesepines)
+glimpse(japanesepines)
+
+
+```
+

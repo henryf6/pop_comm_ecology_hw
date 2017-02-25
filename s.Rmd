@@ -1,0 +1,8 @@
+---
+title: "Population and Community Ecology Homework 2"
+output: pdf_document
+  toc: true
+---
+
+# Problem 1
+
