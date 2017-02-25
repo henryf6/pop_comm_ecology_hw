@@ -103,7 +103,7 @@ r = 0.9367
 
 In the second part of this question, we are asked to plot ln(N) versus t:
 ```{r}
-plot(Time, LnNumDoves, bty = 'n', xlab = 'Year', ylab = 'Number of Doves', main = 'ln(N) vs. t', pch = 17)
+plot(Time, LnNumDoves, bty = 'n', xlab = 'Year', ylab = 'ln Number of Doves', main = 'ln(N) vs. t', pch = 17)
 
 
 ```
@@ -187,6 +187,7 @@ Thus we find the generation time, G, to be about 2.03.
 In this problem we are asked to use the life table from problem 5 to create a leslie matrix and project the number in each age class for the next two years. First, we provide the completed life table below:
 
 ```{r}
+library(knitr)
 lxbx <- lifetable$l_x*lifetable$b_x
 xlxbx <- lifetable$Age*lifetable$l_x*lifetable$b_x
 pxbx_1 <- vector(length =5, mode= 'double')
