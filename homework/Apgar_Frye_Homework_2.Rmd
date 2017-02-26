@@ -1,0 +1,43 @@
+---
+title: "Population and Community Ecology Homework 2"
+author: Samantha Apgar & Henry Frye
+output: pdf_document
+
+---
+
+# Part 1
+
+##Tutorial Run-Through
+
+```{r japanesedata setup, warning = FALSE, message  = FALSE}
+library(spatstat)
+data(japanesepines)
+summary(japanesepines)
+plot(japanesepines, cols = 'green')
+```
+
+Creating a Clark and Evans Index:
+```{r clarkevans index}
+clarkevans(japanesepines)
+```
+
+Testing for statistical significance of Clark and Evans Index for randomness in distribution.
+
+```{r}
+clarkevans.test(japanesepines, correction = "Donnelly")
+```
+
+Findind Ripley's K
+```{r}
+RipleysK <- Kest(japanesepines) 
+plot(envelope(japanesepines))
+```
+
+Calculating Ripley's $\hat{L}$
+
+```{r}
+RipleysL <- Lest(japanesepines)
+plot(envelope(japanesepines, Lest, nsim = 99), .-theo~r)
+```
+
+
