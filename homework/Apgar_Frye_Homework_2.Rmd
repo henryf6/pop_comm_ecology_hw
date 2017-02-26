@@ -9,13 +9,35 @@ output: pdf_document
 
 ##Tutorial Run-Through
 
-```{r}
+```{r japanesedata setup, warning = FALSE, message  = FALSE}
 library(spatstat)
-library(dplyr)
 data(japanesepines)
 summary(japanesepines)
-glimpse(japanesepines)
-
-
+plot(japanesepines, cols = 'green')
 ```
+
+Creating a Clark and Evans Index:
+```{r clarkevans index}
+clarkevans(japanesepines)
+```
+
+Testing for statistical significance of Clark and Evans Index for randomness in distribution.
+
+```{r}
+clarkevans.test(japanesepines, correction = "Donnelly")
+```
+
+Findind Ripley's K
+```{r}
+RipleysK <- Kest(japanesepines) 
+plot(envelope(japanesepines))
+```
+
+Calculating Ripley's $\hat{L}$
+
+```{r}
+RipleysL <- Lest(japanesepines)
+plot(envelope(japanesepines, Lest, nsim = 99), .-theo~r)
+```
+
 
