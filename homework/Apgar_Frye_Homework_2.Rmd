@@ -64,39 +64,35 @@ clarkevans.test(whiteoaks, correction = "Donnelly")
 
 ```
 
-The Clark Evans Test with Donnelly correction yields a p-value of 0.01 (p < .05). This indicates that the null hypothesis that the data is randomly distributed can be rejected. 
+The Clark Evans Test with Donnelly correction yields a p-value of 0.01 (p < .05). This indicates that we can reject the null hypothesis that the data is randomly distributed. 
 
 ## Part 1b. 
 
-Yes, the Clark and Evans Index is significantly different from 1. 
+Yes, the Clark and Evans Index is significantly different from 1. Our R value is 0.93346 and an R value < 1 indicates spatial clumping. 
 
 ## Part 1c. 
 
 ```{r}
-RipleysK <- Kest(whiteoaks)
-plot(envelope(whiteoaks))
-
 RipleysL <- Lest(whiteoaks)
 plot(envelope(whiteoaks, Lest, nsim = 99), .-theo~r)
 
-p <- pcf(whiteoaks)
-plot(p)
-
-plot(envelope(whiteoaks, pcf, nsim = 99))
-
 ```
+
+Because the observed Ripley's $\hat{L}$ is outside of the expected confidence envelope, we can conclude that the spatial distribution deviates form a normal distribution.
 
 ## Part 1d. 
 
 ```{r}
+<<<<<<< HEAD
 QC <- quadratcount(whiteoaks)
 QC
   
+=======
+>>>>>>> dcf834a9d9797abb5cb3342297b27b468c7b4cc1
 plot(whiteoaks)
 plot(QC, add = TRUE, cex = 1.5, col = "red", font = 2)
 
 QC <- quadratcount(whiteoaks, 10, 10)
-QC
 
 quadrat.test(whiteoaks, 10, 10, method = "M", nsim = 1999)
 ```
