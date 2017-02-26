@@ -9,8 +9,6 @@ output: pdf_document
 
 ##Tutorial Run-Through
 
-<<<<<<< HEAD
-=======
 ```{r Analysis of Point Patterns}
 # install.packages("spatstat")
 library(spatstat)
@@ -91,7 +89,6 @@ plot(envelope(whiteoaks, pcf, nsim = 99))
 ## Part 1d. 
 
 ```{r}
-
 QC <- quadratcount(whiteoaks)
 QC
   
@@ -106,6 +103,6 @@ quadrat.test(whiteoaks, 10, 10, method = "M", nsim = 1999)
 
 ## Part 1e. 
 The p-value of the quadrat test is 0.001 (p < .05), indicating that we can reject the null hypothesis that the distribution of white oaks is random. The data indicates that the white oaks are not randomly distributed throughout the plot and may be either clumped or uniform. Visually, it looks as if the white oak distribution is clumped. 
->>>>>>> 2ce8fac6bcf9a7e3989613ca6600736a07d838f0
+
 
 
