@@ -9,5 +9,103 @@ output: pdf_document
 
 ##Tutorial Run-Through
 
+<<<<<<< HEAD
+=======
+```{r Analysis of Point Patterns}
+# install.packages("spatstat")
+library(spatstat)
+
+data(japanesepines)
+summary(japanesepines)
+
+plot(japanesepines)
+
+clarkevans(japanesepines)
+
+clarkevans.test(japanesepines, correction = "Donnelly")
+
+RipleysK <- Kest(japanesepines)
+plot(envelope(japanesepines))
+
+RipleysL <- Lest(japanesepines)
+plot(envelope(japanesepines, Lest, nsim = 99), .-theo~r)
+
+p <- pcf(japanesepines)
+plot(p)
+
+plot(envelope(japanesepines, pcf, nsim = 99))
+```
+
+```{r Quadrats and the Poisson Distribution}
+
+data(longleaf)
+summary(longleaf)
+
+QC <- quadratcount(longleaf)
+QC
+  
+plot(longleaf)
+plot(QC, add = TRUE, cex = 1.5, col = "red", font = 2)
+
+QC <- quadratcount(longleaf, 15, 15)
+QC
+
+quadrat.test(longleaf, 15, 15, method = "M", nsim = 1999)
+
+```
+
+## Part 1a. 
+
+```{r Problem Set: White Oaks}
+
+whiteoaks <- lansing[lansing$marks == "whiteoak"]
+
+clarkevans(whiteoaks)
+clarkevans.test(whiteoaks, correction = "Donnelly")
+
+
+```
+
+The Clark Evans Test with Donnelly correction yields a p-value of 0.01 (p < .05). This indicates that the null hypothesis that the data is randomly distributed can be rejected. 
+
+## Part 1b. 
+
+Yes, the Clark and Evans Index is significantly different from 1. 
+
+## Part 1c. 
+
+```{r}
+RipleysK <- Kest(whiteoaks)
+plot(envelope(whiteoaks))
+
+RipleysL <- Lest(whiteoaks)
+plot(envelope(whiteoaks, Lest, nsim = 99), .-theo~r)
+
+p <- pcf(whiteoaks)
+plot(p)
+
+plot(envelope(whiteoaks, pcf, nsim = 99))
+
+```
+
+## Part 1d. 
+
+```{r}
+
+QC <- quadratcount(whiteoaks)
+QC
+  
+plot(whiteoaks)
+plot(QC, add = TRUE, cex = 1.5, col = "red", font = 2)
+
+QC <- quadratcount(whiteoaks, 10, 10)
+QC
+
+quadrat.test(whiteoaks, 10, 10, method = "M", nsim = 1999)
+```
+
+## Part 1e. 
+The p-value of the quadrat test is 0.001 (p < .05), indicating that we can reject the null hypothesis that the distribution of white oaks is random. The data indicates that the white oaks are not randomly distributed throughout the plot and may be either clumped or uniform. Visually, it looks as if the white oak distribution is clumped. 
+>>>>>>> 2ce8fac6bcf9a7e3989613ca6600736a07d838f0
 
 
