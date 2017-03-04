@@ -83,6 +83,12 @@ Because the observed Ripley's $\hat{L}$ is outside of the expected confidence en
 ## Part 1d. 
 
 ```{r}
+<<<<<<< HEAD
+QC <- quadratcount(whiteoaks)
+QC
+  
+=======
+>>>>>>> dcf834a9d9797abb5cb3342297b27b468c7b4cc1
 plot(whiteoaks)
 plot(QC, add = TRUE, cex = 1.5, col = "red", font = 2)
 
@@ -93,5 +99,6 @@ quadrat.test(whiteoaks, 10, 10, method = "M", nsim = 1999)
 
 ## Part 1e. 
 The p-value of the quadrat test is 0.001 (p < .05), indicating that we can reject the null hypothesis that the distribution of white oaks is random. The data indicates that the white oaks are not randomly distributed throughout the plot and may be either clumped or uniform. Visually, it looks as if the white oak distribution is clumped. 
+
 
 
