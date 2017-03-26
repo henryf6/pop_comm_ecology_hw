@@ -11,7 +11,9 @@ output:
 
 ## Part a 
 
+In this case interspecifc competition dominates the interaction, the cotinga population will go extinct and fruit dove population is safe.
 
+The y-intercept of the purple dove line is defined by $\frac{k}{\alpha_{dc}}$ and the x-intercept of the orange cotinga line is defined by $\frac{k}{\alpha_{cd}}$.  Since $k_c=k_d$, we assume k=1 for graphical simplicity. 
 
 
 ```{r, fig.margin = TRUE, echo = FALSE, fig.cap = "Fruit Dove and Spangled Cotingas Phase Diagram"}
@@ -29,12 +31,6 @@ ggplot(bird_df) + geom_line(aes(xdove,ydove), color = 'purple') +
   theme_tufte() + xlab('Dove Population') + ylab('Cotingas Population') + 
   theme(axis.title.x = element_text(colour = "purple"),
         axis.title.y = element_text(colour = 'orange'))
-
-#ggplot(df) + geom_point() + xlim(0, 1.5) + ylim(0, 1.5) + geom_abline(intercept = 1, slope= -1.25, color = 'purple') + geom_abline(intercept = (1/1.1), slope = -1.1, color = 'orange') +
- # theme_tufte() + xlab('Dove Population') + ylab('Cotingas Population') + 
-  #theme(axis.title.x = element_text(colour = "purple"),
-   #      axis.title.y = element_text(colour = 'orange'))
-# good thing to know, the intercept= argument refers to the x-intercept
 
 #Sam, pretty please check my conclusion on this and make sure I didn't get this backward :)
 ```
