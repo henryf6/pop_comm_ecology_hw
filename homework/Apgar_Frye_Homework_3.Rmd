@@ -11,7 +11,7 @@ output:
 
 ## Part a 
 
-In this case interspecifc competition dominates the interaction, the cotinga population will go extinct and fruit dove population is safe.
+Figure 1 shows that interspecifc competition dominates the interaction, the cotinga population will go extinct and the fruit dove population is safe.
 
 The y-intercept of the purple dove line is defined by $\frac{k}{\alpha_{dc}}$ and the x-intercept of the orange cotinga line is defined by $\frac{k}{\alpha_{cd}}$.  Since $k_c=k_d$, we assume k=1 for graphical simplicity. 
 
