@@ -11,20 +11,30 @@ output:
 
 ## Part a 
 
-Based on Figure 1, interspecific competition is stronger than intraspecific competition. The Fruit Dove population will out compete the Cotingas and thus their population is not threatened.
+
+
+
 ```{r, fig.margin = TRUE, echo = FALSE, fig.cap = "Fruit Dove and Spangled Cotingas Phase Diagram"}
 library(ggplot2)
 library(ggthemes)
 
 #create empty dataframe
-df <- data.frame()
-
+dovedf <- data.frame(xdove = c(0,1), ydove = c(1.25,0))
+cotingadf <-  data.frame(xcot = c(0,(1/1.1)),ycot = c(1,0))
+bird_df<- cbind(dovedf,cotingadf)
 #create empty ggplot with appropriate ablines
 
-ggplot(df) + geom_point() + xlim(0, 5) + ylim(0, 5) + geom_abline(intercept = 1.25, slope=-1.25, color = 'purple') + geom_abline(intercept = 1, slope = -1.1, color = 'orange') +
+ggplot(bird_df) + geom_line(aes(xdove,ydove), color = 'purple') + 
+  geom_line(aes(xcot,ycot), color = 'orange') + 
   theme_tufte() + xlab('Dove Population') + ylab('Cotingas Population') + 
   theme(axis.title.x = element_text(colour = "purple"),
-         axis.title.y = element_text(colour = 'orange'))
+        axis.title.y = element_text(colour = 'orange'))
+
+#ggplot(df) + geom_point() + xlim(0, 1.5) + ylim(0, 1.5) + geom_abline(intercept = 1, slope= -1.25, color = 'purple') + geom_abline(intercept = (1/1.1), slope = -1.1, color = 'orange') +
+ # theme_tufte() + xlab('Dove Population') + ylab('Cotingas Population') + 
+  #theme(axis.title.x = element_text(colour = "purple"),
+   #      axis.title.y = element_text(colour = 'orange'))
+# good thing to know, the intercept= argument refers to the x-intercept
 
 #Sam, pretty please check my conclusion on this and make sure I didn't get this backward :)
 ```
