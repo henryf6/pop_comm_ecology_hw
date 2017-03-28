@@ -41,3 +41,12 @@ ggplot(bird_df) + geom_line(aes(xdove,ydove), color = 'purple') +
 ## Part b
 
 In Figure 1, the conclusions based on the intercepts of the axes are constrained by the following be true: $\frac{k_c}{\alpha_{cd}}<k_d$ (x-axis) and $k_c< \frac{k_d}{\alpha_{dc}}$ (yaxis). If the carrying capacity of the Cotingas violates these constraints then the conclusions in Part a would change.
+
+
+
+
+# Problem 3
+
+## Part a
+
+To maintain populations at equilibrium, *Astrionella*
