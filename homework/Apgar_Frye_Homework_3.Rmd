@@ -20,11 +20,10 @@ The y-intercept of the purple dove line is defined by $\frac{k}{\alpha_{dc}}$ an
 library(ggplot2)
 library(ggthemes)
 
-#create empty dataframe
+#create dataframes
 dovedf <- data.frame(xdove = c(0,1), ydove = c(1.25,0))
 cotingadf <-  data.frame(xcot = c(0,(1/1.1)),ycot = c(1,0))
 bird_df<- cbind(dovedf,cotingadf)
-#create empty ggplot with appropriate ablines
 
 ggplot(bird_df) + geom_line(aes(xdove,ydove), color = 'purple') + 
   geom_line(aes(xcot,ycot), color = 'orange') + 
@@ -41,3 +40,30 @@ ggplot(bird_df) + geom_line(aes(xdove,ydove), color = 'purple') +
 ## Part b
 
 In Figure 1, the conclusions based on the intercepts of the axes are constrained by the following be true: $\frac{k_c}{\alpha_{cd}}<k_d$ (x-axis) and $k_c< \frac{k_d}{\alpha_{dc}}$ (yaxis). If the carrying capacity of the Cotingas violates these constraints then the conclusions in Part a would change.
+
+# Problem 2
+
+The zero growth isocline is found by setting each population growth rate to zero, $\frac{dN_1}{dt}=0$. The intercepts for the absolute case can be found as:
+
+$$
+0=r_1N_1(1-\alpha_{11}N_1-\alpha_{12}N_2)
+$$
+
+$$
+0= 1-\alpha_{11}N_1-\alpha_{12}N_2
+$$
+
+Putting the equation in a linear mx+b format:
+
+$$
+N_1 = \frac{ 1 }{ \alpha_{11} }  - \frac{ \alpha_{12} }{ \alpha_{11} } N_2
+$$
+
+The intercepts for $N_1$ are $\frac{1}{\alpha_{11}}$ and $\frac{1}{\alpha_{12}}$.
+
+
+# Problem 3
+
+## Part a
+
+## Part b
