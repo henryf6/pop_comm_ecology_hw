@@ -91,7 +91,7 @@ Diatoms <- cbind(Astrionella,Synedra)
 
 ggplot(Diatoms) + geom_line(aes(xastr,yastr), color = 'red') + 
   geom_line(aes(xsyn,ysyn), color = 'blue') + 
-  theme_tufte() + xlab('Resource availability (Phosphate$\mu{mol}^{-1}$)') + ylab('Resource availability (Silicate$\mu{mol}^{-1}$)') + 
+  theme_tufte() + xlab('Resource availability (Phosphate $\mu{mol}^{-1}$)') + ylab('Resource availability (Silicate $\mu{mol}^{-1}$)') + 
   theme(axis.title.x = element_text(colour = "black"),
         axis.title.y = element_text(colour = 'black'))
 ```
