@@ -163,20 +163,14 @@ The lowest resource concentrations for each species to maintain populations at e
 ```{r, fig.margin = TRUE, echo = FALSE, fig.cap = "Resource availability phase diagram for \\textit{Astrionella} (red) and \\textit{Synedra} (blue)"}
 #library(ggplot2)
 #library(ggthemes)
-# Sam, since I loaded these packages in the first chunk, you don't need to reload,
-# it just adds more time for the document to knit.  You probably had errors when you first
-# tried since you didn't run that first chunk.
 Astrionella <- data.frame(xastr = c(.01, .01, .02, .03), yastr = c(.03, .02, .02, .02))
 Synedra <-  data.frame(xsyn = c(.02, .02, .03, .04), ysyn = c(.03, .01, .01, .01))
 Diatoms <- cbind(Astrionella,Synedra)
 
 ggplot(Diatoms) + geom_line(aes(xastr,yastr), color = 'red') + 
   geom_line(aes(xsyn,ysyn), color = 'blue') + 
-<<<<<<< HEAD
-  theme_tufte() + xlab('Resource availability (Phosphate $\mu{mol}^{-1}$)') + ylab('Resource availability (Silicate $\mu{mol}^{-1}$)') + 
-=======
-  theme_tufte() + xlab(expression(paste('Resource Availability Phosphate ',mu,'mol'^-1))) +   ylab(expression(paste('Resource Availability Silicate ',mu,'mol'^-1))) + 
->>>>>>> 2cc8a459761257737484a8f2ffb434ad3f461632
+  theme_tufte() + xlim(c(0, .04)) + ylim(c(0, .03)) +
+  theme_tufte() + xlab(expression(paste('Resource Availability Phosphate ',mu,'mol'^-1))) + ylab(expression(paste('Resource Availability Silicate ',mu,'mol'^-1))) + 
   theme(axis.title.x = element_text(colour = "black"),
         axis.title.y = element_text(colour = 'black'))
 ```
@@ -192,11 +186,11 @@ Yes, there is the potential for these species to coexist on these two resources 
 
 ## Part cii
 
-* Phosphate = .02$\mu{mol}^{-1}$
-* Silicate = .02$\mu{mol}^{-1}$
+* Phosphate = .03$\mu{mol}^{-1}$
+* Silicate = .03$\mu{mol}^{-1}$
 
 ## Part ciii 
 
-* Phosphate = .02$\mu{mol}^{-1}$
-* Silicate = .02$\mu{mol}^{-1}$
+* Phosphate = .01$\mu{mol}^{-1}$
+* Silicate = .01$\mu{mol}^{-1}$
 
