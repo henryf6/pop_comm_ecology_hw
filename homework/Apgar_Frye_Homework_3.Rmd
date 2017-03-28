@@ -11,7 +11,7 @@ output:
 
 ## Part a 
 
-Figure 1 shows that interspecifc competition dominates the interaction, the cotinga population will go extinct and the fruit dove population is safe.
+Figure 1 shows that interspecific competition dominates the interaction, the cotinga population will go extinct and the fruit dove population is safe.
 
 The y-intercept of the purple dove line is defined by $\frac{k}{\alpha_{dc}}$ and the x-intercept of the orange cotinga line is defined by $\frac{k}{\alpha_{cd}}$.  Since $k_c=k_d$, we assume k=1 for graphical simplicity. 
 
@@ -41,6 +41,9 @@ ggplot(bird_df) + geom_line(aes(xdove,ydove), color = 'purple') +
 
 In Figure 1, the conclusions based on the intercepts of the axes are constrained by the following be true: $\frac{k_c}{\alpha_{cd}}<k_d$ (x-axis) and $k_c< \frac{k_d}{\alpha_{dc}}$ (yaxis). If the carrying capacity of the Cotingas violates these constraints then the conclusions in Part a would change.
 
+<<<<<<< HEAD
+
+=======
 # Problem 2
 
 The zero growth isocline is found by setting each population growth rate to zero, $\frac{dN_1}{dt}=0$. The intercepts for the absolute case can be found as:
@@ -59,6 +62,7 @@ $$
 N_1 = \frac{ 1 }{ \alpha_{11} }  - \frac{ \alpha_{12} }{ \alpha_{11} } N_2
 $$
 
+<<<<<<< HEAD
 The intercepts for the $N_1$ zero growth line  are $\frac{1}{\alpha_{11}}$ and $\frac{1}{\alpha_{12}}$. The $N_2$ zero growth line intercepts can easily be shown to be $\frac{1}{\alpha_{22}}$ and $\frac{1}{\alpha_{21}}$
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = 'Four Competition Scenarios from absolute Lotka-Volterra Equations'}
@@ -132,10 +136,58 @@ plot_grid(ddfsp1win_plot,ddfsp2win_plot,dfspcoex_plot,dfspunstcoex_plot, labels 
          hjust = -1, label_size = 4)
 ```
 
+=======
+The intercepts for $N_1$ are $\frac{1}{\alpha_{11}}$ and $\frac{1}{\alpha_{12}}$.
+>>>>>>> e06026191c6629f5a4c762944e5f4f5fca1d97b4
+>>>>>>> 1c7305049b5cca4de3e5feb697312ce3c5ddf855
 
 
 # Problem 3
 
 ## Part a
 
+The lowest resource concentrations for each species to maintain populations at equilibrium when growing on their own are:
+*Astrionella*
+Phosphate: .01$\mu{mol}^{-1}$
+Silicate:  .02$\mu{mol}^{-1}$
+
+*Synedra*
+Phosphate: .02$\mu{mol}^{-1}$
+Silicate:  .01$\mu{mol}^{-1}$
+
 ## Part b
+
+```{r, fig.margin = TRUE, echo = FALSE, fig.cap = "Resource availability phase diagram for *Astrionella* (red) and *Synedra* (blue)"}
+library(ggplot2)
+library(ggthemes)
+library(tufte)
+Astrionella <- data.frame(xastr = c(.01, .01, .02, .03), yastr = c(.03, .02, .02, .02))
+Synedra <-  data.frame(xsyn = c(.02, .02, .03, .04), ysyn = c(.03, .01, .01, .01))
+Diatoms <- cbind(Astrionella,Synedra)
+
+ggplot(Diatoms) + geom_line(aes(xastr,yastr), color = 'red') + 
+  geom_line(aes(xsyn,ysyn), color = 'blue') + 
+  theme_tufte() + xlab('Resource availability (Phosphate$\mu{mol}^{-1}$)') + ylab('Resource availability (Silicate$\mu{mol}^{-1}$)') + 
+  theme(axis.title.x = element_text(colour = "black"),
+        axis.title.y = element_text(colour = 'black'))
+```
+
+
+Yes, there is the potential for these species to coexist on these two resources stably. Since the zero net growth isoclines (ZNGI's) cross, competitive exclusion will not occur in all scenarios. Coexistance is therefore possible.
+
+## Part c
+### i 
+
+Phosphate = .03$\mu{mol}^{-1}$
+Silicate = .015$\mu{mol}^{-1}$
+
+### ii
+
+Phosphate = .02$\mu{mol}^{-1}$
+Silicate = .02$\mu{mol}^{-1}$
+
+### iii 
+
+Phosphate = .02$\mu{mol}^{-1}$
+Silicate = .02$\mu{mol}^{-1}$
+
