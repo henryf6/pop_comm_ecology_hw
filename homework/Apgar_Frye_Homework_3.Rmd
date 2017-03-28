@@ -70,8 +70,34 @@ The intercepts for $N_1$ are $\frac{1}{\alpha_{11}}$ and $\frac{1}{\alpha_{12}}$
 
 ## Part a
 
-<<<<<<< HEAD
-To maintain populations at equilibrium, *Astrionella*
-=======
+The lowest resource concentrations for each species to maintain populations at equilibrium when growing on their own are:
+*Astrionella*
+Phosphate: .01$\mu{mol}^{-1}$
+Silicate:  .02$\mu{mol}^{-1}$
+
+*Synedra*
+Phosphate: .02$\mu{mol}^{-1}$
+Silicate:  .01$\mu{mol}^{-1}$
+
 ## Part b
->>>>>>> e06026191c6629f5a4c762944e5f4f5fca1d97b4
+
+GRAPH
+
+Yes, there is the potential for these species to coexist on these two resources stably. Since the zero net growth isoclines (ZNGI's) cross, competitive exclusion will not occur in all scenarios. Coexistance is therefore possible.
+
+## Part c
+### i 
+
+Phosphate = .03$\mu{mol}^{-1}$
+Silicate = .015$\mu{mol}^{-1}$
+
+### ii
+
+Phosphate = .02$\mu{mol}^{-1}$
+Silicate = .02$\mu{mol}^{-1}$
+
+### iii 
+
+Phosphate = .02$\mu{mol}^{-1}$
+Silicate = .02$\mu{mol}^{-1}$
+
