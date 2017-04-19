@@ -1,0 +1,196 @@
+---
+title: "EEB 5301 Homework 3"
+author: "Samantha Apgar & Henry Frye"
+date: "Spring 2017"
+output: 
+  tufte::tufte_handout:
+    keep_tex: false
+---
+
+# Problem 1
+
+## Part a 
+
+Figure 1 shows that interspecific competition dominates the interaction, the cotinga population will go extinct and the fruit dove population is safe.
+
+The y-intercept of the purple dove line is defined by $\frac{k}{\alpha_{dc}}$ and the x-intercept of the orange cotinga line is defined by $\frac{k}{\alpha_{cd}}$.  Since $k_c=k_d$, we assume k=1 for graphical simplicity. 
+
+
+```{r, fig.margin = TRUE, echo = FALSE, fig.cap = "Fruit Dove and Spangled Cotingas Phase Diagram"}
+library(ggplot2)
+library(ggthemes)
+
+#create dataframes
+dovedf <- data.frame(xdove = c(0,1), ydove = c(1.25,0))
+cotingadf <-  data.frame(xcot = c(0,(1/1.1)),ycot = c(1,0))
+bird_df<- cbind(dovedf,cotingadf)
+
+ggplot(bird_df) + geom_line(aes(xdove,ydove), color = 'purple') + 
+  geom_line(aes(xcot,ycot), color = 'orange') + 
+  theme_tufte() + xlab('Dove Population') + ylab('Cotingas Population') + 
+  theme(axis.title.x = element_text(colour = "purple"),
+        axis.title.y = element_text(colour = 'orange'))
+
+#Sam, pretty please check my conclusion on this and make sure I didn't get this backward :)
+```
+
+
+
+
+## Part b
+
+In Figure 1, the conclusions based on the intercepts of the axes are constrained by the following be true: $\frac{k_c}{\alpha_{cd}}<k_d$ (x-axis) and $k_c< \frac{k_d}{\alpha_{dc}}$ (yaxis). If the carrying capacity of the Cotingas violates these constraints then the conclusions in Part a would change.
+
+
+
+
+# Problem 2
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE, fig.cap = 'Four Competition Scenarios from absolute Lotka-Volterra Equations'}
+library(cowplot)
+
+#Species 1 wins
+a11=.4; a12=.5; a21=1; a22=1
+
+sp1df <- data.frame(s1x = c(0, 1/a11) , s1y = c(1/a12,0))
+sp2df <- data.frame(s2x = c(0,1/a21) , s2y = c(1/a22,0) )
+labels <- c('1/a11','1/a12','1/a21','1/a22')
+dfsp1win <- cbind(sp1df,sp2df)
+
+ddfsp1win_plot <- ggplot(dfsp1win) + geom_line(aes(s1x,s1y), color = 'purple') +
+  geom_line(aes(s2x,s2y), color = 'orange') + geom_point(aes(s2x,s2y), color = 'orange') +
+  geom_text(aes(s2x,s2y), label = labels[3:4], check_overlap =TRUE, vjust = -2, size = 1) +
+  geom_text(aes(s1x,s1y), label = labels[1:2], check_overlap =TRUE, vjust = -2, size = 1) +
+  geom_point(aes(s1x,s1y), color = 'purple')+
+  xlim(0,3) + ylim(0,3) + 
+  theme_tufte() + xlab('N1') + ylab('N2') + 
+    theme(axis.title.x = element_text(colour = "purple"),
+        axis.title.y = element_text(colour = 'orange')) 
+  
+#Species 2 wins
+
+a11=1; a12=1; a21=.4; a22=.5
+
+sp1df <- data.frame(s1x = c(0, 1/a11) , s1y = c(1/a12,0))
+sp2df <- data.frame(s2x = c(0,1/a21) , s2y = c(1/a22,0) )
+
+dfsp2win <- cbind(sp1df,sp2df)
+
+ddfsp2win_plot <- ggplot(dfsp2win) + geom_line(aes(s1x,s1y), color = 'purple') + 
+  geom_line(aes(s2x,s2y), color = 'orange') + 
+  xlim(0,3) + ylim(0,3) + 
+  theme_tufte() + xlab('N1') + ylab('N2') + 
+    theme(axis.title.x = element_text(colour = "purple"),
+        axis.title.y = element_text(colour = 'orange'))# +
+  
+#Stable Coexistance
+
+a11=.5; a12=1; a21=1; a22=.5
+
+sp1df <- data.frame(s1x = c(0, 1/a11) , s1y = c(1/a12,0))
+sp2df <- data.frame(s2x = c(0,1/a21) , s2y = c(1/a22,0) )
+
+dfspcoex <- cbind(sp1df,sp2df)
+
+dfspcoex_plot <- ggplot(dfspcoex) + geom_line(aes(s1x,s1y), color = 'purple') + 
+  geom_line(aes(s2x,s2y), color = 'orange') + 
+  xlim(0,3) + ylim(0,3) + 
+  theme_tufte() + xlab('N1') + ylab('N2') + 
+    theme(axis.title.x = element_text(colour = "purple"),
+        axis.title.y = element_text(colour = 'orange')) 
+  
+
+
+
+#Unstable Coexistance
+a11=1.3; a12=1; a21=1.5; a22=.5
+
+sp1df <- data.frame(s1x = c(0, 1/a11) , s1y = c(1/a12,0))
+sp2df <- data.frame(s2x = c(0,1/a21) , s2y = c(1/a22,0) )
+
+dfspunstcoex <- cbind(sp1df,sp2df)
+
+dfspunstcoex_plot <- ggplot(dfspunstcoex) + geom_line(aes(s1x,s1y), color = 'purple') + 
+  geom_line(aes(s2x,s2y), color = 'orange') + 
+  xlim(0,3) + ylim(0,3) + 
+  theme_tufte() + xlab('N1') + ylab('N2') + 
+    theme(axis.title.x = element_text(colour = "purple"),
+        axis.title.y = element_text(colour = 'orange')) 
+
+
+
+plot_grid(ddfsp1win_plot,ddfsp2win_plot,dfspcoex_plot,dfspunstcoex_plot, labels  = c('Species 1 Wins','Species 2 Wins', 'Stable Coexistance','Unstable Coexistance'),
+         hjust = -1, label_size = 6)
+```
+
+The zero growth isocline is found by setting each population growth rate to zero, $\frac{dN_1}{dt}=0$. The intercepts for the absolute case can be found as:
+
+$$
+0=r_1N_1(1-\alpha_{11}N_1-\alpha_{12}N_2)
+$$
+
+$$
+0= 1-\alpha_{11}N_1-\alpha_{12}N_2
+$$
+
+Putting the equation in a linear mx+b format:
+
+$$
+N_1 = \frac{ 1 }{ \alpha_{11} }  - \frac{ \alpha_{12} }{ \alpha_{11} } N_2
+$$
+
+The intercepts for the $N_1$ zero growth line  are $\frac{1}{\alpha_{11}}$ and $\frac{1}{\alpha_{12}}$. The $N_2$ zero growth line intercepts can easily be shown to be $\frac{1}{\alpha_{22}}$ and $\frac{1}{\alpha_{21}}$
+
+
+# Problem 3
+
+## Part a
+
+The lowest resource concentrations for each species to maintain populations at equilibrium when growing on their own are:
+
+*Astrionella*
+
+* Phosphate: .01$\mu{mol}^{-1}$
+* Silicate:  .02$\mu{mol}^{-1}$
+
+*Synedra*
+
+* Phosphate: .02$\mu{mol}^{-1}$
+* Silicate:  .01$\mu{mol}^{-1}$
+
+## Part b
+
+```{r, fig.margin = TRUE, echo = FALSE, fig.cap = "Resource availability phase diagram for \\textit{Astrionella} (red) and \\textit{Synedra} (blue)"}
+#library(ggplot2)
+#library(ggthemes)
+Astrionella <- data.frame(xastr = c(.01, .01, .02, .03), yastr = c(.03, .02, .02, .02))
+Synedra <-  data.frame(xsyn = c(.02, .02, .03, .04), ysyn = c(.03, .01, .01, .01))
+Diatoms <- cbind(Astrionella,Synedra)
+
+ggplot(Diatoms) + geom_line(aes(xastr,yastr), color = 'red') + 
+  geom_line(aes(xsyn,ysyn), color = 'blue') + 
+  theme_tufte() + xlim(c(0, .04)) + ylim(c(0, .03)) +
+  theme_tufte() + xlab(expression(paste('Resource Availability Phosphate ',mu,'mol'^-1))) + ylab(expression(paste('Resource Availability Silicate ',mu,'mol'^-1))) + 
+  theme(axis.title.x = element_text(colour = "black"),
+        axis.title.y = element_text(colour = 'black'))
+```
+
+
+Yes, there is the potential for these species to coexist on these two resources stably. Since the zero net growth isoclines (ZNGI's) cross, competitive exclusion will not occur in all scenarios. Coexistance is therefore possible.
+
+
+## Part ci 
+
+* Phosphate = .03$\mu{mol}^{-1}$
+* Silicate = .015$\mu{mol}^{-1}$
+
+## Part cii
+
+* Phosphate = .03$\mu{mol}^{-1}$
+* Silicate = .03$\mu{mol}^{-1}$
+
+## Part ciii 
+
+* Phosphate = .01$\mu{mol}^{-1}$
+* Silicate = .01$\mu{mol}^{-1}$
+
