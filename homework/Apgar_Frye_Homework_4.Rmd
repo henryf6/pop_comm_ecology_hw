@@ -15,6 +15,8 @@ output:
 library(vegan)
 library(dplyr)
 library(tidyr)
+library(ggplot2)
+library(ggthemes)
 data(dune)
 data(dune.env)
 
@@ -62,10 +64,44 @@ The effective number of species between Simpson's and Shannon's index are almost
 ## Part d
 
 
+```{r}
+dumdum <-data.frame(level1= as.numeric(dune.sum1[1,]))
+ggplot(dumdum, aes(level1)) + geom_histogram() + theme_tufte()
+```
+
+There are approximately 6 individuals that appear twice at moisture level 1.  Out 250 individuals the probability is 2.4%.
+
+## Part e
 
 
+```{r}
+radPlot(x = dune.sum1[1,], bty = 'n')
+radPlot(x = dune.sum1[2,], add = TRUE, col = 'blue')
+radPlot(x = dune.sum1[3,], add = TRUE, col = 'red')
+radPlot(x = dune.sum1[4,], add = TRUE, col = 'limegreen')
+legend('topright', legend = c('1','2',"4","5"),
+       col = c("black","blue","red","limegreen"), lty =1,lwd=2)
+```
 
 
+## Part f
 
+Based on the plot above, moisture level 1, appears to be the most even since it has the flattest slope. However, this is is not much flatter than level 5 and not easily interpreted.
+
+One way to better quantify evenness would be to calculate the Hill's ratio from either of the diversity indices above.
+
+## Part g
+
+Simpson's index tends to be less sensitive to rare species than Shannon's index. It is weighted towards the most abundant species.  In part c, Simpson's index tended to favor level 4 as the most diverse, which makes sense from the graph in part e that shows level 4 as the most dominated by common abundant species (i.e. lack of sensitivity towards rare species).
+
+## Part h
+```{r}
+
+```
+
+## Part i
+```{r}
+
+```
 
 
