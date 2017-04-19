@@ -1,0 +1,71 @@
+---
+title: "EEB 5301 Homework 4"
+author: "Samantha Apgar & Henry Frye"
+date: "Spring 2017"
+output: 
+  tufte::tufte_handout:
+    keep_tex: false
+---
+
+# Problem 1
+
+# Problem 2
+
+```{r vegan setup, echo = FALSE, warning = FALSE, message = FALSE}
+library(vegan)
+library(dplyr)
+library(tidyr)
+data(dune)
+data(dune.env)
+
+dune.sum	<- aggregate(dune,	list(Moisture	=	dune.env$Moisture),	sum)
+dune.sum1	<- dune.sum[,-1]
+rownames(dune.sum1)	<- dune.sum[,1]
+
+radPlot	<- function(x,	add=FALSE,	col='black',	...){
+		x	<- x[x>0]
+		x	<- x[rev(order(x))]
+		if(!add)
+				plot(1:length(x),	x,	type='l',	xlab='Rank',	ylab='Abundance	(log	scale)',
+									log='y',	col=col,	...)
+		else
+				lines(1:length(x),	x,	col=col,	...)
+		return(NULL)}
+
+```
+
+##Part a
+
+```{r}
+specnumber(dune.sum1)
+```
+
+As moisture increases, species richness decreases from moisture level 1 to level 4, but then suddenly increases at level 5. The most rich is level 5 while level 4 is the least rich.
+
+## Part b
+
+```{r}
+sort(diversity(dune.sum1))
+```
+
+According to Shannon's Index, the moisture level is ranked 5 > 2 > 1 > 4 in order of high diversity to lowest.
+
+## Part c
+
+```{r}
+sort(exp(diversity(dune.sum1)))
+sort(1/(diversity(dune.sum1, index = 'invsimpson')))
+```
+
+The effective number of species between Simpson's and Shannon's index are almost flipped.  Moisture level 4 has the lowest effective number of species according to Shannon's index while the level 4 is considered the having the highest effective number of species according to Simpson's.
+
+## Part d
+
+
+
+
+
+
+
+
+
