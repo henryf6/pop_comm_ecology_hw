@@ -59,8 +59,8 @@ dfsp1win <- cbind(sp1df,sp2df)
 
 ddfsp1win_plot <- ggplot(dfsp1win) + geom_line(aes(s1x,s1y), color = 'purple') +
   geom_line(aes(s2x,s2y), color = 'orange') + geom_point(aes(s2x,s2y), color = 'orange') +
-  geom_text(aes(s2x,s2y), label = labels[3:4], check_overlap =TRUE, vjust = -2, size = 1) +
-  geom_text(aes(s1x,s1y), label = labels[1:2], check_overlap =TRUE, vjust = -2, size = 1) +
+  geom_text(aes(s2x,s2y), label = labels[3:4], check_overlap =TRUE, vjust = -2, size = 1.5) +
+  geom_text(aes(s1x,s1y), label = labels[1:2], check_overlap =TRUE, vjust = -2, size = 1.5) +
   geom_point(aes(s1x,s1y), color = 'purple')+
   xlim(0,3) + ylim(0,3) + 
   theme_tufte() + xlab('N1') + ylab('N2') + 
@@ -168,9 +168,14 @@ Synedra <-  data.frame(xsyn = c(.02, .02, .03, .04), ysyn = c(.03, .01, .01, .01
 Diatoms <- cbind(Astrionella,Synedra)
 
 ggplot(Diatoms) + geom_line(aes(xastr,yastr), color = 'red') + 
+<<<<<<< HEAD
+  geom_line(aes(xsyn,ysyn), color = 'blue') + xlim(0,0.04) + ylim(0,0.03) +
+  theme_tufte() + xlab(expression(paste('Resource Availability Phosphate ',mu,'mol'^-1))) +   ylab(expression(paste('Resource Availability Silicate ',mu,'mol'^-1))) + 
+=======
   geom_line(aes(xsyn,ysyn), color = 'blue') + 
   theme_tufte() + xlim(c(0, .04)) + ylim(c(0, .03)) +
   theme_tufte() + xlab(expression(paste('Resource Availability Phosphate ',mu,'mol'^-1))) + ylab(expression(paste('Resource Availability Silicate ',mu,'mol'^-1))) + 
+>>>>>>> ae847b98a75256479bc3f54d4838e34b2543dd9a
   theme(axis.title.x = element_text(colour = "black"),
         axis.title.y = element_text(colour = 'black'))
 ```
