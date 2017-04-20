@@ -9,29 +9,20 @@ output:
 
 # Problem 1
  
-The students' suggestion of doubling plant densities will not allow the aphid population to grow amidst ladybug predation. The predator prey relationship was unstable at a carrying capacity of 1,000 aphids and remains unstable at a carrying capacity of 1,200 aphids. The phase diagram below shows that the predator isocline remains to the left of both scenarios, indicating an unstable predator prey relationship. 
+The students' suggestion of doubling plant densities will not allow the aphid population to grow amidst ladybug predation. The predator prey relationship was unstable at a carrying capacity of 1,000 aphids and remains unstable at a carrying capacity of 1,200 aphids. The phase diagram below shows that the predator isocline remains to the left of the prey isocline hump for both scenarios, indicating an unstable predator-prey relationship. The black prey isocline is the original scenario and the blue isocline is the scenario where the plant density is doubled.
 
-```{r}
-r=.001
-a=.5
-k1=1000
-k2=1200
-h=.02083
-q=1/3
-f=.01
-
-N1= 1:k1
-N2= 1:k2
+```{r,  fig.margin = TRUE ,fig.cap = "Phase Plane Diagram"}
+r=.001 ; a=.5 ; k1=1000
+k2=1200; h=.02083
+q=1/3 ;f=.01
+N1= 1:k1 ; N2= 1:k2
 Prey1 = (r*N1 * (1 - (N1/k1))* (a*N1)) / (1+a*h*N1)
 Prey2 = (r*N2 * (1 - (N2/k2))* (a*N2)) / (1+a*h*N2)
-#Prey2 = (r / (a * k2)) * (k2 - (k2*a*h + 1)*N2 - a*h*(N2^2))
-
 Predator = ( q / (f*a - a*h*q))
-
-plot(x = N1, y  = Prey1, bty = 'n', ylim = c(0,15), type = 'l')
-abline(v = Predator, col = 'red')
-lines(Prey2, col = 'cadetblue')
-
+plot(x = N1, y  = Prey1, bty = 'n', ylim = c(0,15), type = 'l', 
+     xlab = "Number of Prey", ylab = "Number of Predators")
+abline(v = Predator, col = 'red', lty =2)
+lines(Prey2, col = 'blue')
 ```
 
 # Problem 2
@@ -58,16 +49,15 @@ radPlot	<- function(x,	add=FALSE,	col='black',	...){
 		else
 				lines(1:length(x),	x,	col=col,	...)
 		return(NULL)}
-
 ```
 
-##Part a
+## Part a
 
 ```{r}
 specnumber(dune.sum1)
 ```
 
-As moisture increases, species richness decreases from moisture level 1 to level 4, but then suddenly increases at level 5. The most rich is level 5 while level 4 is the least rich.
+As moisture increases, species richness decreases from moisture levels 1 to 4, but then increases at level 5. The most species rich level is 5 while level 4 is the least species rich.
 
 ## Part b
 
@@ -75,7 +65,7 @@ As moisture increases, species richness decreases from moisture level 1 to level
 sort(diversity(dune.sum1))
 ```
 
-According to Shannon's Index, the moisture level is ranked 5 > 2 > 1 > 4 in order of high diversity to lowest.
+According to Shannon's Index, the moisture level is ranked 5 > 2 > 1 > 4 in order of highest diversity to lowest.
 
 ## Part c
 
@@ -92,24 +82,24 @@ The effective number of species between Simpson's and Shannon's index are almost
 diversity(dune.sum1[1,], index = 'invsimpson')
 ```
 
-Taking the inverse of Simpson's index yields the probability of finding the same two species in a sample, in this case this 7.8%.
+Taking the inverse of Simpson's index yields the probability of finding the same two species in a sample, in this case this is 7.8%.
 
 ## Part e
 
 
-```{r}
-radPlot(x = dune.sum1[1,], bty = 'n')
+```{r, warning = FALSE, message = FALSE}
+radPlot(x = dune.sum1[1,], cex.axis = .75, cex.lab = .75)
 radPlot(x = dune.sum1[2,], add = TRUE, col = 'blue')
 radPlot(x = dune.sum1[3,], add = TRUE, col = 'red')
 radPlot(x = dune.sum1[4,], add = TRUE, col = 'limegreen')
 legend('topright', legend = c('1','2',"4","5"),
-       col = c("black","blue","red","limegreen"), lty =1,lwd=2)
+       col = c("black","blue","red","limegreen"), lty =1,lwd=2, cex = .5)
 ```
 
 
 ## Part f
 
-Based on the plot above, moisture level 1, appears to be the most even since it has the flattest slope. However, this is is not much flatter than level 5 and not easily interpreted.
+Based on the plot above, moisture level 1, appears to be the most even since it has the flattest slope. However, this is is not much flatter than level 5.
 
 One way to better quantify evenness would be to calculate the Hill's ratio from either of the diversity indices above.
 
@@ -149,4 +139,4 @@ The expected number of species for each moisture level are listed in the table a
 vegdist(dune.sum1)
 ```
 
-Based on the dissimilarity index table above, the farther the distance between moisture, the higher difference in indices.  For example, when moisture level 1 is compared to the others the distance index increase with increases difference between moisture.
+Based on the dissimilarity index table above, the larger the distance between moisture levels, the higher the difference in indices.  For example, when moisture level 1 is compared to the other moisture levels, the distance index increases with the distance between moisture levels.
