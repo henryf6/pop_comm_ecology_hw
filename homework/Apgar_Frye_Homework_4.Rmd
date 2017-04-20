@@ -9,14 +9,7 @@ output:
 
 # Problem 1
  
- r = .001 individ/individ/day
- K = 1000 indivs/enclsoure
- a = .5 
- h = .02083 days
- lady bugs live 3 days in enclosures
- 2 x food = 20% more aphids
- q = 1/3 ladybugs/day
- f = .01 
+The students' suggestion of doubling plant densities will not allow the aphid population to grow amidst ladybug predation. The predator prey relationship was unstable at a carrying capacity of 1,000 aphids and remains unstable at a carrying capacity of 1,200 aphids. The phase diagram below shows that the predator isocline remains to the left of both scenarios, indicating an unstable predator prey relationship. 
 
 ```{r}
 r=.001
