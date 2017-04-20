@@ -63,13 +63,11 @@ The effective number of species between Simpson's and Shannon's index are almost
 
 ## Part d
 
-
 ```{r}
-dumdum <-data.frame(level1= as.numeric(dune.sum1[1,]))
-ggplot(dumdum, aes(level1)) + geom_histogram() + theme_tufte()
+diversity(dune.sum1[1,], index = 'invsimpson')
 ```
 
-There are approximately 6 individuals that appear twice at moisture level 1.  Out 250 individuals the probability is 2.4%.
+Taking the inverse of Simpson's index yields the probability of finding the same two species in a sample, in this case this 7.8%.
 
 ## Part e
 
@@ -96,12 +94,34 @@ Simpson's index tends to be less sensitive to rare species than Shannon's index.
 
 ## Part h
 ```{r}
+library(knitr)
+rarefaction_data <- data.frame("Moisture Level 1" = c(rarefy(dune.sum1[1,], sample =2),
+                                rarefy(dune.sum1[1,], sample =10),
+                                rarefy(dune.sum1[1,], sample =100)),
+           "Moisture Level 2" = c(rarefy(dune.sum1[2,], sample =2),
+                                rarefy(dune.sum1[2,], sample =10),
+                                rarefy(dune.sum1[2,], sample =100)),
+           "Moisture Level 4" = c(rarefy(dune.sum1[3,], sample =2),
+                                rarefy(dune.sum1[3,], sample =10),
+                                rarefy(dune.sum1[3,], sample =100)),
+           "Moisture Level 5" = c(rarefy(dune.sum1[4,], sample =2),
+                                rarefy(dune.sum1[4,], sample =10),
+                                rarefy(dune.sum1[4,], sample =100))
+)
 
+rownames(rarefaction_data) <- c("2","10","100")
+
+kable(rarefaction_data)
 ```
+
+
+The expected number of species for each moisture level are listed in the table above. Different sampling efforts within different moisture levels may yield more rare species thus affecting the overall diversity metrics (especially depending which index is used).
+
 
 ## Part i
-```{r}
 
+```{r}
+vegdist(dune.sum1)
 ```
 
-
+Based on the dissimilarity index table above, the farther the distance between moisture, the higher difference in indices.  For example, when moisture level 1 is compared to the others the distance index increase with increases difference between moisture.
